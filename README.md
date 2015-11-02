@@ -1,8 +1,11 @@
+[![Build Status](https://travis-ci.org/nleof/goyesql.svg)](https://travis-ci.org/nleof/goyesql)
+
 # goyesql
 
 Golang + [Yesql](https://github.com/krisajenkins/yesql)
 
 Parse a file and associate SQL queries to a map. Useful for separating SQL from code logic.
+
 
 # Installation
 
