@@ -25,7 +25,9 @@ var (
 )
 
 func init() {
+	// -- name: $tag
 	reTag = regexp.MustCompile("^\\s*--\\s*name\\s*:\\s*(.+)")
+	// -- $comment
 	reComment = regexp.MustCompile("^\\s*--\\s*(.+)")
 }
 

@@ -14,13 +14,13 @@ var (
 	ErrTagOverwritten = errors.New("Tag overwritten")
 )
 
-// Tag is a string
-type Tag string
-
-// Query is a string
+// Query is a string we want to execute
 type Query string
 
-// Queries is a map associating a Tag to a Query
+// Tag is a string prefixing a Query
+type Tag string
+
+// Queries is a map associating a Tag to its Query
 type Queries map[Tag]Query
 
 func parseBuffer(reader io.Reader) (Queries, error) {
@@ -36,6 +36,7 @@ func parseBuffer(reader io.Reader) (Queries, error) {
 		line := parseLine(scanner.Text())
 
 		switch line.Type {
+
 		case LineBlank, LineComment:
 			// we don't care about blank and comment lines
 			continue
@@ -60,6 +61,7 @@ func parseBuffer(reader io.Reader) (Queries, error) {
 			}
 
 			lastTag = Tag(line.Value)
+
 		}
 
 		lastLine = line
