@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestErrTags(t *testing.T) {
+func TestScannerErrTags(t *testing.T) {
 	tests := map[string]error{
 		"missing":  ErrTagMissing,
 		"doubloon": ErrTagOverwritten,
@@ -21,7 +21,7 @@ func TestErrTags(t *testing.T) {
 	}
 }
 
-func TestValid(t *testing.T) {
+func TestScannerValid(t *testing.T) {
 	file := "tests/samples/valid.sql"
 
 	queries, err := ParseFile(file)
