@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// A line has four possible type
+// A line may be blank, a tag, a comment or a query
 const (
 	LineBlank = iota
 	LineQuery
@@ -13,7 +13,9 @@ const (
 	LineTag
 )
 
-// ParsedLine is a tuple (Type, Value)
+// ParsedLine stores line type and value
+//
+// For example: ParsedLine{Type=LineTag, Value="foo"}
 type ParsedLine struct {
 	Type  int
 	Value string

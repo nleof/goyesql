@@ -1,3 +1,8 @@
+// Package goyesql is a Go port of Yesql
+//
+// It allows you to write SQL queries in separate files.
+//
+// See rationale at https://github.com/krisajenkins/yesql#rationale
 package goyesql
 
 import (
@@ -6,7 +11,7 @@ import (
 
 // Some helpers to read files
 
-// ParseFile read a file and return Queries or an error
+// ParseFile reads a file and return Queries or an error
 func ParseFile(path string) (Queries, error) {
 	file, err := os.Open(path)
 	if err != nil {
@@ -17,7 +22,7 @@ func ParseFile(path string) (Queries, error) {
 	return parseBuffer(file)
 }
 
-// MustParseFile calls Load and panic if an error occurs
+// MustParseFile calls ParseFile but panic if an error occurs
 func MustParseFile(path string) Queries {
 	queries, err := ParseFile(path)
 	if err != nil {

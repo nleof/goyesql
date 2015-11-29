@@ -14,7 +14,8 @@ var (
 	ErrTagOverwritten = errors.New("Tag overwritten")
 )
 
-// Query is a string we want to execute
+// Query is a string we want to execute.
+// It may be multiline.
 type Query string
 
 // Tag is a string prefixing a Query
