@@ -39,3 +39,7 @@ queries := goyesql.MustParseFile("queries.sql")
 ```
 
 Enjoy!
+
+# Embedding
+
+You can use [bindata](https://github.com/jteeuwen/go-bindata) for embedding your queries in your binary.
