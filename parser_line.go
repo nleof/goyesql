@@ -7,16 +7,16 @@ import (
 
 // A line may be blank, a tag, a comment or a query
 const (
-	LineBlank = iota
-	LineQuery
-	LineComment
-	LineTag
+	lineBlank = iota
+	lineQuery
+	lineComment
+	lineTag
 )
 
 // ParsedLine stores line type and value
 //
-// For example: ParsedLine{Type=LineTag, Value="foo"}
-type ParsedLine struct {
+// For example: parsedLine{Type=lineTag, Value="foo"}
+type parsedLine struct {
 	Type  int
 	Value string
 }
@@ -33,16 +33,16 @@ func init() {
 	reComment = regexp.MustCompile("^\\s*--\\s*(.+)")
 }
 
-func parseLine(line string) ParsedLine {
+func parseLine(line string) parsedLine {
 	line = strings.Trim(line, " ")
 
 	if line == "" {
-		return ParsedLine{LineBlank, ""}
+		return parsedLine{lineBlank, ""}
 	} else if matches := reTag.FindStringSubmatch(line); len(matches) > 0 {
-		return ParsedLine{LineTag, matches[1]}
+		return parsedLine{lineTag, matches[1]}
 	} else if matches := reComment.FindStringSubmatch(line); len(matches) > 0 {
-		return ParsedLine{LineComment, matches[1]}
+		return parsedLine{lineComment, matches[1]}
 	}
 
-	return ParsedLine{LineQuery, line}
+	return parsedLine{lineQuery, line}
 }

@@ -27,7 +27,7 @@ type Queries map[Tag]Query
 func parseBuffer(reader io.Reader) (Queries, error) {
 	var (
 		lastTag  Tag
-		lastLine ParsedLine
+		lastLine parsedLine
 	)
 
 	queries := make(Queries)
@@ -38,11 +38,11 @@ func parseBuffer(reader io.Reader) (Queries, error) {
 
 		switch line.Type {
 
-		case LineBlank, LineComment:
+		case lineBlank, lineComment:
 			// we don't care about blank and comment lines
 			continue
 
-		case LineQuery:
+		case lineQuery:
 			// got a query but no tag before
 			if lastTag == "" {
 				return nil, ErrTagMissing
@@ -55,9 +55,9 @@ func parseBuffer(reader io.Reader) (Queries, error) {
 			}
 			queries[lastTag] += Query(query)
 
-		case LineTag:
+		case lineTag:
 			// got a tag after another tag
-			if lastLine.Type == LineTag {
+			if lastLine.Type == lineTag {
 				return nil, ErrTagOverwritten
 			}
 
