@@ -24,7 +24,8 @@ type Tag string
 // Queries is a map associating a Tag to its Query
 type Queries map[Tag]Query
 
-func parseBuffer(reader io.Reader) (Queries, error) {
+// ParseReader takes an io.Reader and returns Queries or an error.
+func ParseReader(reader io.Reader) (Queries, error) {
 	var (
 		lastTag  Tag
 		lastLine parsedLine

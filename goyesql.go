@@ -19,7 +19,7 @@ func ParseFile(path string) (Queries, error) {
 	}
 	defer file.Close()
 
-	return parseBuffer(file)
+	return ParseReader(file)
 }
 
 // MustParseFile calls ParseFile but panic if an error occurs
