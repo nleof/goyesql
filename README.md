@@ -11,7 +11,7 @@ Parse a file and associate SQL queries to a map. Useful for separating SQL from 
 # Installation
 
 ```
-$ go get github.com/nleof/goyesql
+$ go get -u github.com/nleof/goyesql
 ```
 
 # Usage
