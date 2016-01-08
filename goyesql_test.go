@@ -21,3 +21,9 @@ func TestMustParseFileNoPanic(t *testing.T) {
 	}()
 	MustParseFile("tests/samples/valid.sql")
 }
+
+func BenchmarkMustParseFile(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		MustParseFile("tests/samples/valid.sql")
+	}
+}
