@@ -6,6 +6,7 @@
 package goyesql
 
 import (
+	"bytes"
 	"os"
 )
 
@@ -25,6 +26,21 @@ func ParseFile(path string) (Queries, error) {
 // MustParseFile calls ParseFile but panic if an error occurs
 func MustParseFile(path string) Queries {
 	queries, err := ParseFile(path)
+	if err != nil {
+		panic(err)
+	}
+
+	return queries
+}
+
+// ParseBytes parses bytes and returns Queries or an error.
+func ParseBytes(b []byte) (Queries, error) {
+	return ParseReader(bytes.NewReader(b))
+}
+
+// MustParseBytes parses bytes but panics if an error occurs.
+func MustParseBytes(b []byte) Queries {
+	queries, err := ParseBytes(b)
 	if err != nil {
 		panic(err)
 	}
