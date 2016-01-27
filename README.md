@@ -42,4 +42,23 @@ Enjoy!
 
 # Embedding
 
-You can use [bindata](https://github.com/jteeuwen/go-bindata) for embedding your queries in your binary.
+You can use [bindata](https://github.com/jteeuwen/go-bindata) and `ParseBytes` func for embedding your queries in your binary.
+
+```go
+package main
+
+import (
+	"github.com/nleof/goyesql"
+)
+
+func main() {
+	data := MustAsset("resources/sql/foo.sql")
+	queries := goyesql.MustParseBytes(data)
+	// your turn
+}
+```
+
+```sh
+go-bindata resources/...
+go run main.go bindata.go
+```
