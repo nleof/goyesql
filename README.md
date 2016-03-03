@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/nleof/goyesql.svg)](https://travis-ci.org/nleof/goyesql)
 [![GoDoc](https://godoc.org/github.com/nleof/goyesql?status.svg)](https://godoc.org/github.com/nleof/goyesql)
+[![Go Report Card](https://goreportcard.com/badge/github.com/nleof/goyesql)](https://goreportcard.com/report/github.com/nleof/goyesql)
 
 # goyesql
 
