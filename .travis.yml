@@ -1,1 +1,39 @@
 language: go
+
+sudo: false
+
+install:
+  - source .default.env
+  - go get ./...
+  - curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $(go env GOPATH)/bin v1.17.1
+  - go get github.com/kisielk/errcheck
+  - go get github.com/joho/godotenv
+
+stages:
+  - verification
+  - test
+
+jobs:
+  include:
+    - stage: verification
+      go: "1.12.6"
+      script: make verification
+
+    - stage: verification
+      go: "1.11.1"
+      script: make verification
+
+    - stage: test
+      go: "1.12.6"
+      script: make test
+
+    - stage: test
+      go: "1.11.1"
+      before_script:
+        - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        - chmod +x ./cc-test-reporter
+        - ./cc-test-reporter before-build
+      script:
+        - make test
+      after_script:
+        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
